@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 
 function Content({ state }) {
-    const res = state.items.map((item) => {
-        return <Item key={item.id} item={item} />;
+    const res = state.items.map((item, i) => {
+        return <Item key={i} item={item} />;
     });
 
     return (

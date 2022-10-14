@@ -3,11 +3,36 @@ import { HiX } from 'react-icons/hi';
 import Button from '../button';
 import { connect } from 'react-redux';
 
+const item = {
+    "id": 0,
+    "title": "Назва",
+    "desc": "Опис",
+    "color": "default",
+    "time": "",
+    "date": "Сьогодні",
+    "status": "false"
+}
+
 
 const addTask = (switchStatus, add) => {
     switchStatus();
-    add();
+    add(item);
+    console.log(item)
 }
+
+const taskHandler = (e) => {
+    item.title = e.target.value;
+}
+const descHandler = (e) => {
+    item.desc = e.target.value;
+}
+const dataHandler = (e) => {
+    item.date = e.target.value;
+}
+const timeHandler = (e) => {
+    item.time = e.target.value;
+}
+
 
 function AddForm({ status, switchStatus, add }) {
 
@@ -24,13 +49,13 @@ function AddForm({ status, switchStatus, add }) {
             <div onClick={switchStatus} className="close"><HiX /></div>
             <form action="">
                 <h2>Task</h2>
-                <input type="text" placeholder='Task' />
+                <input onChange={taskHandler} type="text" placeholder='Task' name="task" />
                 <h2>Description</h2>
-                <textarea name="" id="" cols="30" rows="10" placeholder='Description'></textarea>
+                <textarea onChange={descHandler} name="Description" id="" cols="30" rows="10" placeholder='Description'></textarea>
                 <h2>Data</h2>
-                <input type="text" placeholder='Data' />
+                <input onChange={dataHandler} type="text" placeholder='Data' name='data' />
                 <h2>Time</h2>
-                <input type="text" placeholder='Time' />
+                <input onChange={timeHandler} type="text" placeholder='Time' name='time' />
 
                 <div className='addTask' onClick={() => { addTask(switchStatus, add) }} >
                     <Button value='Add task' />
@@ -50,7 +75,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         switchStatus: () => dispatch({ type: 'StatusAddForm' }),
-        add: () => dispatch({ type: 'Add' })
+        add: (data) => dispatch({ type: 'Add', data })
     }
 }
 

@@ -43,9 +43,10 @@ const init = {
 function reducer(state = init, action) {
     switch (action.type) {
         case 'Add':
+            action.data.id = state.items.length + 1;
             return {
                 ...state,
-                "items": addItem(state.items, state.items[0])
+                "items": addItem(state.items, action.data)
             }
         case 'StatusAddForm':
             return {
