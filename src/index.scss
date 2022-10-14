@@ -3,6 +3,7 @@ $text: #E0E1DD;
 $text-2: #e0e0de81;
 $item-bg: #1B263B;
 $border: #768BA7;
+$button: #768BA7;
 
 * {
   margin: 0;
@@ -12,19 +13,38 @@ $border: #768BA7;
   -webkit-tap-highlight-color: transparent;
 }
 
-html,
+
 body {
-  background: $bg;
-  color: $text;
   font-family: Arial;
   height: 100%;
   font-size: 0.9em;
 }
 
+.button {
+  display: block;
+  background: $button;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: $text;
+  transition: 0.6s;
+  cursor: pointer;
+  margin: 20px auto;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
 .app {
   display: flex;
   flex-direction: column;
-
+  background: $bg;
+  color: $text;
+  min-height: 100vh;
 }
 
 .header {
@@ -68,6 +88,7 @@ body {
   }
 
   &__desc {
+    width: 85%;
     margin-top: 10px;
     opacity: 0.5;
   }
@@ -139,5 +160,76 @@ body {
     svg {
       transform: scale(1.2);
     }
+  }
+}
+
+
+.addForm {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  max-height: 100%;
+  background: $bg;
+  transition: 0.6s;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 100px 0;
+
+  }
+
+  input:focus {
+    z-index: 10;
+  }
+
+  input,
+  textarea {
+    background: $item-bg;
+    outline: none;
+    border: none;
+    color: $text;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px 0;
+    resize: none;
+    transition: 0.6s;
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.6s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.addForm.active {
+  left: 0%;
+  overflow-y: scroll;
+}
+
+::placeholder {
+  opacity: 0.5;
+}
+
+svg {
+  path {
+    fill: $text;
   }
 }
