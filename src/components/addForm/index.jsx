@@ -4,9 +4,8 @@ import Button from '../button';
 import { connect } from 'react-redux';
 
 const item = {
-    "id": 0,
     "title": "Назва",
-    "desc": "Опис",
+    "desc": "",
     "color": "default",
     "time": "",
     "date": "Сьогодні",

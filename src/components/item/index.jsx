@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { HiCheck } from "react-icons/hi";
 
-function Item({ item, add }) {
-    // const desc = item.desc.slice(0, 50) + " ...";
 
+function Item({ item, status, id, itemStatus }) {
+    const desc = item.desc.slice(0, 50) + " ...";
     return (
-        <div className='item complete' onClick={() => add(item.id)}>
+        <div className={'item ' + itemStatus} onClick={() => status(id)}>
             <div className="item__date">{item.date}</div>
-            <div className="item__checkbox"></div>
+            <div className="item__checkbox">
+                <i> <HiCheck /> </i>
+            </div>
             <div className="item__content">
                 <h2 className="item__title">{item.title}</h2>
                 <p className="item__desc">{item.desc}</p>
@@ -19,7 +22,7 @@ function Item({ item, add }) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (id) => dispatch({ type: 'Add', id: id }),
+        status: (id) => dispatch({ type: 'StatusItem', id: id }),
     }
 }
 

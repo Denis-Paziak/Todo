@@ -1,53 +1,35 @@
 
 let items = [
-    {
-        "id": 0,
-        "title": "aaa 1",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, vitae?",
-        "color": "default",
-        "time": "12:11",
-        "date": "11 DEC",
-        "status": "false"
-    },
-    {
-        "id": 2,
-        "title": "House works",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, vitae?",
-        "color": "default",
-        "time": "12:11",
-        "date": "11 DEC",
-        "status": "false"
-    },
-    {
-        "id": 3,
-        "title": "Lesson 3",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, vitae?",
-        "color": "default",
-        "time": "12:11",
-        "date": "15 DEC",
-        "status": "false"
-    },
 
 ];
 
-// items = JSON.stringify(items);
-// localStorage.setItem('data', items);
-// const data = JSON.parse(localStorage.getItem('data'));
+let init;
+let data = JSON.parse(localStorage.getItem('data'));
 
-const init = {
-    "theme": "dark",
-    "items": items,
-    "addForm": false,
-    "switchThemeStatus": false
-};
+if (localStorage.getItem('data') === null) {
+    init = {
+        "theme": "dark",
+        "items": items,
+        "addForm": false,
+        "switchThemeStatus": false
+    }
+    localStorage.setItem('data', JSON.stringify(init));
+} else {
+    init = data;
+}
 
 function reducer(state = init, action) {
     switch (action.type) {
         case 'Add':
-            action.data.id = state.items.length + 1;
             return {
                 ...state,
                 "items": addItem(state.items, action.data)
+            }
+        case 'Remove':
+
+            return {
+                ...state,
+                "items": remove(state.items, action.id)
             }
         case 'StatusAddForm':
             return {
@@ -55,15 +37,25 @@ function reducer(state = init, action) {
                 "addForm": !state.addForm
             }
         case 'StatusSwitchTheme':
+
             return {
                 ...state,
                 "switchThemeStatus": !state.switchThemeStatus
             }
         case 'Theme':
+            let data = JSON.parse(localStorage.getItem('data'));
+            data.theme = action.theme;
+            localStorage.setItem('data', JSON.stringify(data));
             return {
                 ...state,
                 "theme": action.theme,
                 "switchThemeStatus": !state.switchThemeStatus
+            }
+        case 'StatusItem':
+            console.log(state.items)
+            return {
+                ...state,
+                items: statusItem(state.items, action.id),
             }
         default:
             return state
@@ -72,8 +64,45 @@ function reducer(state = init, action) {
 
 
 const addItem = (state, item) => {
-    let newData = state;
+    let newData = state.slice(0);
     newData.push(item);
+
+    let data = JSON.parse(localStorage.getItem('data'));
+    data.items.push(item);
+
+    localStorage.setItem('data', JSON.stringify(data));
+
+    return newData;
+}
+const remove = (state, id) => {
+    let newData = state.slice(0);
+    newData.splice(id, 1);
+
+    let data = JSON.parse(localStorage.getItem('data'));
+    data.items.splice(id, 1);
+
+    localStorage.setItem('data', JSON.stringify(data));
+
+    return newData;
+}
+
+const statusItem = (state, id) => {
+    let newData = [];
+    Object.assign(newData, state);
+
+
+    let data = JSON.parse(localStorage.getItem('data'));
+
+    if (newData[id].status === "complete") {
+        newData[id].status = "";
+        data.items[id].status = "";
+    } else {
+        newData[id].status = "complete";
+        data.items[id].status = "complete";
+    }
+
+    localStorage.setItem('data', JSON.stringify(data));
+
     return newData;
 }
 

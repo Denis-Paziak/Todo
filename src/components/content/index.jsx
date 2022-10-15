@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 
 
 
-function Content({ state }) {
-    const res = state.items.map((item, i) => {
-        return <Item key={i} item={item} />;
-    });
+function Content({ items }) {
+    let res = "no data";
+
+    if (items.length > 0) {
+        res = items.map((item, i) => {
+            return <Item key={i} id={i} item={item} itemStatus={item.status} />;
+        });
+    }
+
 
     return (
         <div className='content'>
@@ -17,7 +22,7 @@ function Content({ state }) {
 }
 
 const mapStateToProps = (state) => ({
-    state: state
+    items: state.items,
 });
 
 export default connect(mapStateToProps, null)(Content);

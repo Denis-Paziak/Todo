@@ -1,6 +1,6 @@
 $bg-light: #FDFEFE;
 $text-light: #000000;
-$text-2-light: #C1C5C8;
+$text-2-light: #000000;
 $item-bg-light: #FDFEFE;
 $border-light: #FF913A;
 $button-light: #FF913A;
@@ -38,6 +38,19 @@ $button-dark: #FF913A;
 
         &__time {
             color: $text-2-light;
+        }
+    }
+
+    .item.complete {
+        .item__checkbox {
+            background: $border-light;
+        }
+
+        .item__title {
+            &::before {
+                background: $border-light;
+                box-shadow: 0px 0px 10px black;
+            }
         }
     }
 
@@ -100,6 +113,18 @@ $button-dark: #FF913A;
 
         &__time {
             color: $text-2-dark;
+        }
+    }
+
+    .item.complete {
+        .item__checkbox {
+            background: $border-dark;
+        }
+
+        .item__title {
+            &::before {
+                background: $border-dark;
+            }
         }
     }
 
