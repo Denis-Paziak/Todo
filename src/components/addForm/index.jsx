@@ -2,21 +2,22 @@ import React from 'react';
 import { HiX } from 'react-icons/hi';
 import Button from '../button';
 import { connect } from 'react-redux';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const item = {
     "title": "Назва",
     "desc": "",
     "color": "default",
-    "time": "",
-    "date": "Сьогодні",
-    "status": "false"
+    "date": new Date().toLocaleString().slice(0, 5),
+    "status": ""
 }
 
-
 const addTask = (switchStatus, add) => {
+    let data = {};
+    Object.assign(data, item)
     switchStatus();
-    add(item);
-    console.log(item)
+    add(data);
 }
 
 const taskHandler = (e) => {
@@ -26,12 +27,9 @@ const descHandler = (e) => {
     item.desc = e.target.value;
 }
 const dataHandler = (e) => {
-    item.date = e.target.value;
+    let date = new Date(e);
+    item.date = date.toLocaleString().slice(0, 5);
 }
-const timeHandler = (e) => {
-    item.time = e.target.value;
-}
-
 
 function AddForm({ status, switchStatus, add }) {
 
@@ -52,9 +50,7 @@ function AddForm({ status, switchStatus, add }) {
                 <h2>Description</h2>
                 <textarea onChange={descHandler} name="Description" id="" cols="30" rows="10" placeholder='Description'></textarea>
                 <h2>Data</h2>
-                <input onChange={dataHandler} type="text" placeholder='Data' name='data' />
-                <h2>Time</h2>
-                <input onChange={timeHandler} type="text" placeholder='Time' name='time' />
+                <DatePicker selected={new Date()} onChange={dataHandler} />
 
                 <div className='addTask' onClick={() => { addTask(switchStatus, add) }} >
                     <Button value='Add task' />

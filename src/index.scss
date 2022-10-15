@@ -122,6 +122,8 @@ body {
     border-radius: 10px;
     flex: 0 0 auto;
     transition: 0.6s;
+    cursor: pointer;
+
 
     i {
       width: 20px;
@@ -136,6 +138,15 @@ body {
     bottom: 20px;
     right: 20px;
     color: $text-2;
+  }
+
+  .delete {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    cursor: pointer;
   }
 }
 
@@ -157,6 +168,10 @@ body {
   }
 }
 
+.item.delete {
+  animation: hide 0.6s ease forwards;
+}
+
 @keyframes show {
   0% {
     opacity: 0;
@@ -174,6 +189,26 @@ body {
     opacity: 1;
     transform: translateX(0px);
 
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+
+  }
+
+  50% {
+    height: 130px;
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  100% {
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
   }
 }
 

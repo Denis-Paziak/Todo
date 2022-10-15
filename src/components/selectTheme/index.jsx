@@ -39,6 +39,18 @@ function SelectTheme({ switchTheme, status }) {
                 </div>
             </div>
 
+            <h2> Dark Red</h2>
+            <div className='previewTheme dark-red'
+                onClick={() => { switchTheme("dark-red") }}>
+                <div className="previewTheme__item">
+                    <div className="previewTheme__checkBox"></div>
+                    <div className="previewTheme__text">
+                        <div className='previewTheme__title'></div>
+                        <div className='previewTheme__desc'></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }

@@ -1,8 +1,5 @@
 
-let items = [
-
-];
-
+let items = [];
 let init;
 let data = JSON.parse(localStorage.getItem('data'));
 
@@ -26,10 +23,14 @@ function reducer(state = init, action) {
                 "items": addItem(state.items, action.data)
             }
         case 'Remove':
-
             return {
                 ...state,
                 "items": remove(state.items, action.id)
+            }
+        case 'StatusItem':
+            return {
+                ...state,
+                "items": statusItem(state.items, action.id),
             }
         case 'StatusAddForm':
             return {
@@ -37,7 +38,6 @@ function reducer(state = init, action) {
                 "addForm": !state.addForm
             }
         case 'StatusSwitchTheme':
-
             return {
                 ...state,
                 "switchThemeStatus": !state.switchThemeStatus
@@ -51,12 +51,6 @@ function reducer(state = init, action) {
                 "theme": action.theme,
                 "switchThemeStatus": !state.switchThemeStatus
             }
-        case 'StatusItem':
-            console.log(state.items)
-            return {
-                ...state,
-                items: statusItem(state.items, action.id),
-            }
         default:
             return state
     }
@@ -64,24 +58,24 @@ function reducer(state = init, action) {
 
 
 const addItem = (state, item) => {
-    let newData = state.slice(0);
-    newData.push(item);
-
     let data = JSON.parse(localStorage.getItem('data'));
     data.items.push(item);
-
     localStorage.setItem('data', JSON.stringify(data));
+
+    let newData = [];
+    Object.assign(newData, state);
+    newData.push(item);
 
     return newData;
 }
 const remove = (state, id) => {
-    let newData = state.slice(0);
-    newData.splice(id, 1);
-
     let data = JSON.parse(localStorage.getItem('data'));
     data.items.splice(id, 1);
-
     localStorage.setItem('data', JSON.stringify(data));
+
+    let newData = [];
+    Object.assign(newData, state);
+    newData.splice(id, 1);
 
     return newData;
 }
@@ -89,7 +83,6 @@ const remove = (state, id) => {
 const statusItem = (state, id) => {
     let newData = [];
     Object.assign(newData, state);
-
 
     let data = JSON.parse(localStorage.getItem('data'));
 

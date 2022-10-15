@@ -12,6 +12,14 @@ $text-2-dark: #C1C5C8;
 $border-dark: #FF913A;
 $button-dark: #FF913A;
 
+
+$bg-dark-red: #232229;
+$item-bg-dark-red: #2b2a32;
+$text-dark-red: #fff;
+$text-2-dark-red: #fff;
+$border-dark-red: #B23333;
+$button-dark-red: #B23333;
+
 .light {
     background: $bg-light;
     color: $text-light;
@@ -23,7 +31,7 @@ $button-dark: #FF913A;
 
     .item {
         background: $item-bg-light;
-        border: 0;
+        border: 0px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         color: $text-light;
 
@@ -33,7 +41,7 @@ $button-dark: #FF913A;
         }
 
         &__checkbox {
-            border: 1px solid $border-light;
+            border: 2px solid $border-light;
         }
 
         &__time {
@@ -85,6 +93,10 @@ $button-dark: #FF913A;
         background: $bg-light;
         color: $text-light;
     }
+
+    ::placeholder {
+        color: $text-2-light;
+    }
 }
 
 .dark {
@@ -108,7 +120,7 @@ $button-dark: #FF913A;
         }
 
         &__checkbox {
-            border: 1px solid $border-dark;
+            border: 2px solid $border-dark;
         }
 
         &__time {
@@ -146,6 +158,10 @@ $button-dark: #FF913A;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             color: $text-dark;
         }
+
+        ::placeholder {
+            color: $text-2-dark;
+        }
     }
 
 
@@ -161,7 +177,86 @@ $button-dark: #FF913A;
     }
 }
 
+.dark-red {
+    background: $bg-dark-red;
+    color: $text-dark-red;
 
+    .button {
+        background: $button-dark-red;
+        color: $text-dark-red;
+    }
+
+    .item {
+        background: $item-bg-dark-red;
+        border: 2px solid $border-dark-red;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        color: $text-dark;
+
+        &__date {
+            background: $item-bg-dark-red;
+            color: $text-2-dark-red;
+        }
+
+        &__checkbox {
+            border: 2px solid $border-dark-red;
+        }
+
+        &__time {
+            color: $text-2-dark-red;
+        }
+    }
+
+    .item.complete {
+        .item__checkbox {
+            background: $border-dark-red;
+        }
+
+        .item__title {
+            &::before {
+                background: $border-dark-red;
+            }
+        }
+    }
+
+    .footer {
+        background: $bg-dark-red;
+
+        .add {
+            background: $text-dark-red;
+            color: $bg-dark-red;
+        }
+    }
+
+    .addForm {
+        background: $bg-dark-red;
+
+        input,
+        textarea {
+            background: $item-bg-dark-red;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            color: $text-dark-red;
+        }
+
+        ::placeholder {
+            color: $text-2-dark-red;
+        }
+    }
+
+
+    svg {
+        path {
+            fill: $text-dark-red;
+        }
+    }
+
+    .previewAllTheme {
+        background: $bg-dark-red;
+        color: $text-dark-red;
+    }
+}
+
+// ------------------------------------------------------------------
+// previewTheme
 .previewTheme.light {
     background: $bg-light;
 
@@ -203,6 +298,30 @@ $button-dark: #FF913A;
 
         .previewTheme__desc {
             background: $text-2-dark;
+        }
+    }
+}
+
+.previewTheme.dark-red {
+    background: $bg-dark-red;
+
+    .previewTheme__item {
+        background: $item-bg-dark-red;
+        border: 2px solid $border-dark-red;
+    }
+
+    .previewTheme__checkBox {
+        border: 2px solid $border-dark-red;
+    }
+
+    .previewTheme__text {
+
+        .previewTheme__title {
+            background: $text-dark-red;
+        }
+
+        .previewTheme__desc {
+            background: $text-2-dark-red;
         }
     }
 }
