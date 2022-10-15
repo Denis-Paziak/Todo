@@ -35,9 +35,10 @@ let items = [
 // const data = JSON.parse(localStorage.getItem('data'));
 
 const init = {
-    "theme": "",
+    "theme": "dark",
     "items": items,
-    "addForm": false
+    "addForm": false,
+    "switchThemeStatus": false
 };
 
 function reducer(state = init, action) {
@@ -52,6 +53,17 @@ function reducer(state = init, action) {
             return {
                 ...state,
                 "addForm": !state.addForm
+            }
+        case 'StatusSwitchTheme':
+            return {
+                ...state,
+                "switchThemeStatus": !state.switchThemeStatus
+            }
+        case 'Theme':
+            return {
+                ...state,
+                "theme": action.theme,
+                "switchThemeStatus": !state.switchThemeStatus
             }
         default:
             return state

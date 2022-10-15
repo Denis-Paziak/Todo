@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function Footer({ switchStatus }) {
+function Footer({ switchStatus, switchTheme }) {
     return (
         <div className='footer'>
             <div className="list">
@@ -22,7 +22,7 @@ function Footer({ switchStatus }) {
             <div className="add" onClick={switchStatus}>
                 +
             </div>
-            <div className="theme">
+            <div className="theme" onClick={switchTheme}>
 
                 <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 15.5C24 22.1274 18.6274 27.5 12 27.5C5.37258 27.5 0 22.1274 0 15.5C0 8.87258 9.37258 0 16 0C22.6274 0 24 8.87258 24 15.5Z" fill="#E0E1DD" />
@@ -35,7 +35,8 @@ function Footer({ switchStatus }) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        switchStatus: () => dispatch({ type: 'StatusAddForm' })
+        switchStatus: () => dispatch({ type: 'StatusAddForm' }),
+        switchTheme: () => dispatch({ type: 'StatusSwitchTheme' })
     }
 }
 

@@ -5,7 +5,7 @@ function Item({ item, add }) {
     // const desc = item.desc.slice(0, 50) + " ...";
 
     return (
-        <div className='item' onClick={() => add(item.id)}>
+        <div className='item complete' onClick={() => add(item.id)}>
             <div className="item__date">{item.date}</div>
             <div className="item__checkbox"></div>
             <div className="item__content">

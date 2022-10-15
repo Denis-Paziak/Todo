@@ -36,7 +36,7 @@ const timeHandler = (e) => {
 
 function AddForm({ status, switchStatus, add }) {
 
-    let classForm;
+    let classForm = "";
     if (status) {
         classForm = "active";
         document.body.style.overflow = "hidden";

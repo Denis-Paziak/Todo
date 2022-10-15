@@ -1,116 +1,30 @@
-$bg-dracula: #282A36;
-$text-dracula: #E0E1DD;
-$text-2-dracula: #e0e0de81;
-$item-bg-dracula: #5C6B9A;
-$border-dracula: #FF79C6;
-$button-dracula: #768BA7;
-
-.dracula {
-    background: $bg-dracula;
-    color: $text-dracula;
-
-    .item {
-        background: $item-bg-dracula;
-        border: 2px solid $border-dracula;
-
-        &__date {
-            background: $item-bg-dracula;
-            color: $text-2-dracula;
-        }
-
-        &__checkbox {
-            border: 1px solid $border-dracula;
-        }
-
-        &__time {
-            color: $text-2-dracula;
-        }
-    }
-
-    .footer {
-        background: $bg-dracula;
-
-        .add {
-            background: $text-dracula;
-            color: $bg-dracula;
-        }
-    }
-
-    .addForm {
-        background: $bg-dracula;
-
-        input,
-        textarea {
-            background: $item-bg-dracula;
-            color: $text-dracula;
-        }
-    }
-}
-
-$bg-night: #011627;
-$text-night: #E0E1DD;
-$text-2-night: #e0e0de81;
-$item-bg-night: #607B96;
-$border-night: #64C8C3;
-$button-night: #768BA7;
-
-.night {
-    background: $bg-night;
-    color: $text-night;
-
-    .item {
-        background: $item-bg-night;
-        border: 2px solid $border-night;
-
-        &__date {
-            background: $item-bg-night;
-            color: $text-2-night;
-        }
-
-        &__checkbox {
-            border: 1px solid $border-night;
-        }
-
-        &__time {
-            color: $text-2-night;
-        }
-    }
-
-    .footer {
-        background: $bg-night;
-
-        .add {
-            background: $text-night;
-            color: $bg-night;
-        }
-    }
-
-    .addForm {
-        background: $bg-night;
-
-        input,
-        textarea {
-            background: $item-bg-night;
-            color: $text-night;
-        }
-    }
-}
-
-
-$bg-light: #FAFAFA;
+$bg-light: #FDFEFE;
 $text-light: #000000;
 $text-2-light: #C1C5C8;
-$item-bg-light: #F0F1F2;
+$item-bg-light: #FDFEFE;
 $border-light: #FF913A;
-$button-light: #768BA7;
+$button-light: #FF913A;
+
+$bg-dark: #212428;
+$item-bg-dark: #2B2E33;
+$text-dark: #EFF1F1;
+$text-2-dark: #C1C5C8;
+$border-dark: #FF913A;
+$button-dark: #FF913A;
 
 .light {
     background: $bg-light;
     color: $text-light;
 
+    .button {
+        background: $button-light;
+        color: $bg-light;
+    }
+
     .item {
         background: $item-bg-light;
-        border: 2px solid $border-light;
+        border: 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         color: $text-light;
 
         &__date {
@@ -142,6 +56,7 @@ $button-light: #768BA7;
         input,
         textarea {
             background: $item-bg-light;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             color: $text-light;
         }
     }
@@ -150,6 +65,119 @@ $button-light: #768BA7;
     svg {
         path {
             fill: $text-light;
+        }
+    }
+
+    .previewAllTheme {
+        background: $bg-light;
+        color: $text-light;
+    }
+}
+
+.dark {
+    background: $bg-dark;
+    color: $text-dark;
+
+    .button {
+        background: $button-dark;
+        color: $text-dark;
+    }
+
+    .item {
+        background: $item-bg-dark;
+        border: 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        color: $text-dark;
+
+        &__date {
+            background: $item-bg-dark;
+            color: $text-2-dark;
+        }
+
+        &__checkbox {
+            border: 1px solid $border-dark;
+        }
+
+        &__time {
+            color: $text-2-dark;
+        }
+    }
+
+    .footer {
+        background: $bg-dark;
+
+        .add {
+            background: $text-dark;
+            color: $bg-dark;
+        }
+    }
+
+    .addForm {
+        background: $bg-dark;
+
+        input,
+        textarea {
+            background: $item-bg-dark;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            color: $text-dark;
+        }
+    }
+
+
+    svg {
+        path {
+            fill: $text-dark;
+        }
+    }
+
+    .previewAllTheme {
+        background: $bg-dark;
+        color: $text-dark;
+    }
+}
+
+
+.previewTheme.light {
+    background: $bg-light;
+
+    .previewTheme__item {
+        background: $item-bg-light;
+    }
+
+    .previewTheme__checkBox {
+        border: 2px solid $border-light;
+    }
+
+    .previewTheme__text {
+        .previewTheme__title {
+            background: $text-light;
+        }
+
+        .previewTheme__desc {
+            background: $text-2-light;
+        }
+    }
+}
+
+.previewTheme.dark {
+    background: $bg-dark;
+
+    .previewTheme__item {
+        background: $item-bg-dark;
+    }
+
+    .previewTheme__checkBox {
+        border: 2px solid $border-dark;
+    }
+
+    .previewTheme__text {
+
+        .previewTheme__title {
+            background: $text-dark;
+        }
+
+        .previewTheme__desc {
+            background: $text-2-dark;
         }
     }
 }
