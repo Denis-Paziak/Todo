@@ -6,6 +6,6 @@ const def = (e) => {
 
 export default function Button({ value = "but" }) {
     return (
-        <button onClick={def} className='button'>{value}</button>
+        <input type="submit" value={value} className='button' onClick={def} />
     )
 }

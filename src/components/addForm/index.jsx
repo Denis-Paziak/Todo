@@ -15,17 +15,25 @@ const item = {
 
 const addTask = (switchStatus, add) => {
     let data = {};
-    Object.assign(data, item)
+    Object.assign(data, item);
     switchStatus();
     add(data);
 }
 
-const taskHandler = (e) => {
-    item.title = e.target.value;
+const formHandler = (e, switchStatus, add) => {
+    e.preventDefault();
+
+    if (e.target[0].name === "task") {
+        item.title = e.target[0].value;
+    }
+    if (e.target[1].name === "description") {
+        item.desc = e.target[1].value;
+    }
+
+    addTask(switchStatus, add);
+    e.target.reset();
 }
-const descHandler = (e) => {
-    item.desc = e.target.value;
-}
+
 const dataHandler = (e) => {
     let date = new Date(e);
     item.date = date.toLocaleString().slice(0, 5);
@@ -42,18 +50,18 @@ function AddForm({ status, switchStatus, add }) {
     }
 
     return (
-        <div className={'addForm ' + classForm}>
+        <div className={'addForm ' + classForm} onSubmit={(e) => { formHandler(e, switchStatus, add) }}>
             <div onClick={switchStatus} className="close"><HiX /></div>
             <form action="">
                 <h2>Task</h2>
-                <input onChange={taskHandler} type="text" placeholder='Task' name="task" />
+                <input type="text" placeholder='Task' name="task" />
                 <h2>Description</h2>
-                <textarea onChange={descHandler} name="Description" id="" cols="30" rows="10" placeholder='Description'></textarea>
+                <textarea name="description" id="" cols="30" rows="10" placeholder='Description'></textarea>
                 <h2>Data</h2>
                 <DatePicker selected={new Date()} onChange={dataHandler} />
 
-                <div className='addTask' onClick={() => { addTask(switchStatus, add) }} >
-                    <Button value='Add task' />
+                <div className='addTask'>
+                    <input type="submit" className='button' />
                 </div>
             </form>
         </div>
