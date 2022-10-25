@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HiX } from 'react-icons/hi';
 
 
-function SelectTheme({ switchTheme, status }) {
+function SelectTheme({ switchTheme, status, statusSwitchTheme }) {
 
     let classTheme = "";
 
@@ -16,7 +16,7 @@ function SelectTheme({ switchTheme, status }) {
 
     return (
         <div className={'previewAllTheme ' + classTheme}>
-            <div className="close"><HiX /></div>
+            <div className="close" onClick={statusSwitchTheme}><HiX /></div>
             <h2>Dark</h2>
             <div className='previewTheme dark' onClick={() => { switchTheme("dark") }}>
                 <div className="previewTheme__item">
@@ -65,6 +65,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         switchTheme: (theme) => dispatch({ type: 'Theme', theme }),
+        statusSwitchTheme: () => dispatch({ type: 'StatusSwitchTheme' }),
     }
 }
 

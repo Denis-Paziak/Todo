@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HiX } from 'react-icons/hi';
-import Button from '../button';
 import { connect } from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -34,12 +33,14 @@ const formHandler = (e, switchStatus, add) => {
     e.target.reset();
 }
 
-const dataHandler = (e) => {
-    let date = new Date(e);
+const dataHandler = (data, setDate) => {
+    let date = new Date(data);
     item.date = date.toLocaleString().slice(0, 5);
+    setDate(data);
 }
 
 function AddForm({ status, switchStatus, add }) {
+    const [date, setDate] = useState(new Date());
 
     let classForm = "";
     if (status) {
@@ -50,7 +51,8 @@ function AddForm({ status, switchStatus, add }) {
     }
 
     return (
-        <div className={'addForm ' + classForm} onSubmit={(e) => { formHandler(e, switchStatus, add) }}>
+        <div className={'addForm ' + classForm}
+            onSubmit={(e) => { formHandler(e, switchStatus, add) }}>
             <div onClick={switchStatus} className="close"><HiX /></div>
             <form action="">
                 <h2>Task</h2>
@@ -58,10 +60,12 @@ function AddForm({ status, switchStatus, add }) {
                 <h2>Description</h2>
                 <textarea name="description" id="" cols="30" rows="10" placeholder='Description'></textarea>
                 <h2>Data</h2>
-                <DatePicker selected={new Date()} onChange={dataHandler} />
+                <DatePicker
+                    selected={date}
+                    onChange={(date) => dataHandler(date, setDate)} />
 
                 <div className='addTask'>
-                    <input type="submit" className='button' />
+                    <button className='button'>ADD TASK</button>
                 </div>
             </form>
         </div>
